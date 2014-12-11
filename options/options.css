@@ -1,0 +1,19 @@
+.no-loaded {
+	display: none;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th ,td {
+	padding: 3px 6px;
+}
+
+thead th {
+	border-bottom: 2px solid #ccc;
+}
+
+tbody td {
+	border-bottom: 1px solid #ccc;
+}

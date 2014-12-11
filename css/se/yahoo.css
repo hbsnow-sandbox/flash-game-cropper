@@ -1,0 +1,16 @@
+* {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body {
+	overflow: hidden;
+}
+
+img,
+noscript,
+#bridge-global-toolbar,
+#footer,
+#hiddenTag {
+	display: none;
+}

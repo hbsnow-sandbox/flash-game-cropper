@@ -1,0 +1,26 @@
+* {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body {
+	min-width: 0 !important;
+	overflow: hidden;
+}
+
+img {
+	display: none;
+}
+
+#w {
+	width: auto !important;
+}
+
+#dmm_ntgnavi,
+#alert,
+#block_background,
+.area-naviapp,
+#ntg-recommend,
+#foot {
+	display: none;
+}

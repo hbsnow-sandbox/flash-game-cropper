@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Flash Game Cropper 設定</title>
+	<link rel="stylesheet" href="options.css">
+</head>
+<body>
+	<header id="header">
+		<h1>Flash Game Cropper 設定</h1>
+	</header>
+
+	<main>
+		<section id="setting">
+			<h2>設定</h2>
+
+			<div id="loading">
+				<p>localStorageから設定ファイルの読み込み中です。しばらくお待ちください。</p>
+			</div>
+
+			<div class="no-loaded">
+				<form role="form">
+					<fieldset>
+						<legend>ショートカットキー設定</legend>
+
+						<p>フォーム上で変更したい実際のキーボタンを押してください。うまく設定変更が反映されない場合、日本語入力になっている可能性がございます。一度半角/全角キーを押してから、再度入力してください。</p>
+
+						<table>
+							<thead>
+								<tr>
+									<th>設定</th>
+									<th>現設定</th>
+									<th>変更後</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>リロード</td>
+									<td><span class="current-key" id="current-hotkey-reload"></span></td>
+									<td><input type="text" class="form-control hotkey-setting" id="hotkey-reload" placeholder="キーを入力してください"></td>
+								</tr>
+								<tr>
+									<td>サイズ変更 (50%)</td>
+									<td><span class="current-key" id="current-hotkey-small"></span></td>
+									<td><input type="text" class="form-control hotkey-setting" id="hotkey-small" placeholder="キーを入力してください"></td>
+								</tr>
+								<tr>
+									<td>サイズ変更 (100%)</td>
+									<td><span class="current-key" id="current-hotkey-medium"></span></td>
+									<td><input type="text" class="form-control hotkey-setting" id="hotkey-medium" placeholder="キーを入力してください"></td>
+								</tr>
+								<tr>
+									<td>サイズ変更 (150%)</td>
+									<td><span class="current-key" id="current-hotkey-large"></span></td>
+									<td><input type="text" class="form-control hotkey-setting" id="hotkey-large" placeholder="キーを入力してください"></td>
+								</tr>
+								<tr>
+									<td>サイズ変更 (200%)</td>
+									<td><span class="current-key" id="current-hotkey-xlarge"></span></td>
+									<td><input type="text" class="form-control hotkey-setting" id="hotkey-xlarge" placeholder="キーを入力してください"></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div id="hotkey-submit">
+							<div id="hotkey-submit-error" class="alart alart-danger" role="alert">
+								<p>設定に重複があります。</p>
+							</div>
+							<div id="hotkey-submit-default" class="alart alart-info" role="alert">
+								<p>設定に変更がありません。</p>
+							</div>
+							<div id="hotkey-submit-change">
+								<button type="submit" class="btn btn-default" id="hotkey-submit-btn">変更</button>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</section>
+
+		<section id="game-list">
+			<h2>対応ゲーム一覧</h2>
+
+			<ul>
+				<li><a href="http://www.dqmp.jp/">ドラゴンクエスト モンスターパレード</a></li>
+				<li><a href="http://sennenyusya.jp/">千年勇者～時渡りのトモシビト～</a></li>
+				<li><a href="http://kingdomhearts.jp/">キングダムハーツ キー</a></li>
+				<li><a href="http://www.dmm.com/netgame_s/kancolle/">艦隊これくしょん</a></li>
+				<li><a href="http://www.dmm.com/netgame_s/shiropro/">御城プロジェクト</a></li>
+				<li><a href="http://www.dmm.com/netgame_s/ole-tower/">俺タワー</a></li>
+				<li><a href="http://www.dmm.com/netgame_s/low/">Lord of Walkure</a></li>
+				<li><a href="http://www.dmm.com/netgame_s/lastsummoner/">ラストサマナー</a></li>
+			</ul>
+		</section>
+	</main>
+
+	<script src="../js/keycodes.js"></script>
+	<script src="options.js"></script>
+</body>
+</html>
