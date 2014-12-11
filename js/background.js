@@ -153,17 +153,17 @@ function createWindow(tabId) {
 }
 
 function setScript(tabId, js, css) {
+	if(Array.isArray(css)) {
+		css.forEach(function(element) {
+			chrome.tabs.insertCSS(tabId, {
+				file: element
+			});
+		});
+	}
+
 	chrome.tabs.executeScript(tabId, {
 		file: 'js/common.js'
 	}, function() {
-		if(Array.isArray(css)) {
-			css.forEach(function(element) {
-				chrome.tabs.insertCSS(tabId, {
-					file: element
-				});
-			});
-		}
-
 		if(Array.isArray(js)) {
 			js.forEach(function(element) {
 				chrome.tabs.executeScript(tabId, {
