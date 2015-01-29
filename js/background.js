@@ -87,72 +87,58 @@ var HOTKEY = {
 }
 
 // インストール時ストレージにデフォルトのホットキーを設定
-chrome.runtime.onInstalled.addListener(function(details){
+chrome.runtime.onInstalled.addListener(function(details) {
 	if(details.reason === 'install') {
 		chrome.storage.local.set(HOTKEY);
 	}
 });
 
 // Page Actionのアイコン表示
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	if(changeInfo.status === 'complete') {
 		GAME_DATA.forEach(function(element) {
-			if(tab.url === element.url) {
-				chrome.pageAction.show(tabId);
+			switch(tab.url) {
+				case element.url:
+					chrome.pageAction.show(tabId);
+					break;
+				case element.url + "?window=true":
+					switch(element.type) {
+						case 'se_yahoo':
+							insertFiles(tabId, ['js/se/yahoo.js'], ['css/se/yahoo.css']);
+							break;
+						case 'dmm':
+							insertFiles(tabId, ['js/dmm/default.js'], ['css/dmm/common.css']);
+							break;
+					}
+					break;
 			}
 		});
 	}
 });
 
+
+
 // Page Actionのアイコンをクリックしたとき
 chrome.pageAction.onClicked.addListener(function(tab) {
-	createWindow(tab.id);
-});
-
-// messageを受け取ったとき
-chrome.runtime.onMessage.addListener(function(request) {
-	switch(request.id) {
-		case 'reload':
-			var queryInfo = {
-				active: true,
-				currentWindow: true
-			}
-
-			chrome.tabs.query(queryInfo, function(tabs) {
-				createWindow(tabs[0].id);
-			});
-			break;
-	}
-});
-
-function createWindow(tabId) {
 	var createData = {
-		tabId: tabId,
+		tabId: tab.id,
 		type: 'popup',
 		focused : true,
 		width: 300,
 		height: 300
 	}
 
-	chrome.windows.create(createData, function(win) {
-		GAME_DATA.forEach(function(element) {
-			if(win.tabs[0].url === element.url) {
-				switch(element.type) {
-					case 'se_yahoo':
-						setScript(win.tabs[0].id, ['js/se/yahoo.js'], ['css/se/yahoo.css']);
-						break;
-					case 'dmm':
-						setScript(win.tabs[0].id, ['js/dmm/default.js'], ['css/dmm/common.css']);
-						break;
+	chrome.windows.create(createData);
 
-				}
-			}
-
-		});
+	// 初期窓化時のみpushStateでURLにクエリ文字列を追加する
+	chrome.tabs.executeScript(tab.id, {
+		code: 'history.pushState(null, null, "?window=true");'
 	});
-}
+});
 
-function setScript(tabId, js, css) {
+
+
+function insertFiles(tabId, js, css) {
 	if(Array.isArray(css)) {
 		css.forEach(function(element) {
 			chrome.tabs.insertCSS(tabId, {

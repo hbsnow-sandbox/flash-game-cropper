@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Flash Game Cropper",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "FLASHゲームをリサイズ可能な別ウィンドウで表示します。",
 	"icons": {
 		"16" : "images/icon_16.png",

@@ -35,10 +35,9 @@ function loadedWindowData() {
 							case 'xlarge':
 								window.resizeTo((screen_w * 2) + fixed_w, (screen_h * 2) + fixed_h);
 								break;
-							default:
-								chrome.runtime.sendMessage({
-									id: key
-								});
+							case 'reload':
+								location.reload();
+								break;
 						}
 					}
 				}
